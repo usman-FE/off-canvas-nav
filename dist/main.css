@@ -551,6 +551,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.relative {
+  position: relative;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -567,6 +571,10 @@ video {
 
 .mr-2 {
   margin-right: 0.5rem;
+}
+
+.mt-14 {
+  margin-top: 3.5rem;
 }
 
 .inline-block {
@@ -589,8 +597,20 @@ video {
   height: 15px;
 }
 
+.h-\[30px\] {
+  height: 30px;
+}
+
+.h-1 {
+  height: 0.25rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-\[26px\] {
+  min-height: 26px;
 }
 
 .w-\[15px\] {
@@ -605,12 +625,52 @@ video {
   width: 100%;
 }
 
+.w-\[30px\] {
+  width: 30px;
+}
+
 .max-w-\[800px\] {
   max-width: 800px;
 }
 
 .max-w-\[680px\] {
   max-width: 680px;
+}
+
+.translate-y-2\.5 {
+  --tw-translate-y: 0.625rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-2 {
+  --tw-translate-y: 0.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-2\.5 {
+  --tw-translate-y: -0.625rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-translate-y-2 {
+  --tw-translate-y: -0.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-rotate-45 {
+  --tw-rotate: -45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-45 {
+  --tw-rotate: 45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .flex-col {
@@ -621,12 +681,24 @@ video {
   align-items: center;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .scroll-smooth {
   scroll-behavior: smooth;
 }
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-sm {
+  border-radius: 0.125rem;
+}
+
+.border-none {
+  border-style: none;
 }
 
 .bg-slate-700 {
@@ -637,6 +709,19 @@ video {
 .bg-\[\#54b9cb\] {
   --tw-bg-opacity: 1;
   background-color: rgb(84 185 203 / var(--tw-bg-opacity));
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bg-slate-800\/70 {
+  background-color: rgb(30 41 59 / 0.7);
+}
+
+.bg-\[\#182631\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 38 49 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-tr {
@@ -719,6 +804,18 @@ video {
   padding-top: 1rem;
 }
 
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -757,6 +854,15 @@ video {
   font-size: 15px;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -771,6 +877,14 @@ video {
 
 .leading-snug {
   line-height: 1.375;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.leading-none {
+  line-height: 1;
 }
 
 .tracking-\[5px\] {
@@ -791,13 +905,40 @@ video {
   color: rgb(218 185 119 / var(--tw-text-opacity));
 }
 
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-70 {
+  opacity: 0.7;
+}
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 
+.duration-300 {
+  transition-duration: 300ms;
+}
+
 .hover\:bg-\[\#4CA8B9\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(76 168 185 / var(--tw-bg-opacity));
+}
+
+.group:hover .group-hover\:bg-\[\#dab977\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(218 185 119 / var(--tw-bg-opacity));
 }
