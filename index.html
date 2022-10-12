@@ -27,6 +27,7 @@
       position: 'left',
       pushContent: true,
       disableBody: true,
+      closeAndBack: true,
       mainNav: true,
       bodyOverflow: function (modal) {
         document.querySelector('body').classList.remove('overflow-hidden', 'overflow-visible');
@@ -381,7 +382,7 @@
               <div class="flex" :class="{'justify-end' : !mainNav}">
                 <h2 class="grow text-[19px] p-4 text-[#1b3958] font-medium" x-show="mainNav">All Categories</h2>
                 <!-- CLOSE BTN -->
-                <div>
+                <div x-show="closeAndBack">
                   <button @click="
                       toggleOn = false;
                       subMenuLevel = 0;
@@ -450,7 +451,7 @@
                               </h2>
                             </div>
                             <!-- GO BACK BTN -->
-                            <div class="text-white border-y border-[#2b5a8b] flex group">
+                            <div class="text-white border-y border-[#2b5a8b] flex group" x-show="closeAndBack">
                               <button type="button" @click="subMenuLevel = 0"
                                 class="grow text-sm py-3.5 px-4 text-white font-semibold bg-[#2f649a] hover:bg-black/5 transition-all flex items-center justify-between">
                                 <span class="capitalize" x-text="mainNav ? 'All categories' : 'Back'"></span>
@@ -465,7 +466,7 @@
                               </button>
                             </div>
                             <!-- MENU ITEMS -->
-                            <ul class=" border-[#2c5d8f] bg-[#336ca6]">
+                            <ul :class="{'border-t' : !closeAndBack}" class=" border-[#2c5d8f] bg-[#336ca6]">
                               <template x-for="item in category.menuLevel1" :key="item.title">
                                 <li class="text-white border-b border-[#2b5a8b] flex group">
                                   <a :href="item.url" @click="
@@ -516,7 +517,8 @@
                                             </h2>
                                           </div>
                                           <!-- GO BACK BTN -->
-                                          <div class="text-white border-y border-[#2b5a8b] flex group">
+                                          <div class="text-white border-y border-[#2b5a8b] flex group"
+                                            x-show="closeAndBack">
                                             <button type="button" @click="subMenuLevel = 1"
                                               class="grow text-sm py-3.5 px-4 text-white font-semibold bg-[#2f649a] hover:bg-black/5 transition-all flex items-center justify-between">
                                               <span class="capitalize"
@@ -538,7 +540,8 @@
                                             </div>
                                           </template>
                                           <!-- MENU ITEMS -->
-                                          <ul class=" border-[#2c5d8f] bg-[#336ca6]">
+                                          <ul :class="{'border-t' : !closeAndBack}"
+                                            class=" border-[#2c5d8f] bg-[#336ca6]">
                                             <template x-for="item2 in item.menuLevel2" :key="item2.title">
                                               <li class="text-white border-b border-[#2b5a8b] flex group">
                                                 <a :href="item2.url" @click="
@@ -588,7 +591,8 @@
                                                           </h2>
                                                         </div>
                                                         <!-- GO BACK BTN -->
-                                                        <div class="text-white border-y border-[#2b5a8b] flex group">
+                                                        <div class="text-white border-y border-[#2b5a8b] flex group"
+                                                          x-show="closeAndBack">
                                                           <button type="button" @click="subMenuLevel = 2"
                                                             class="grow text-sm py-3.5 px-4 text-white font-semibold bg-[#2f649a] hover:bg-black/5 transition-all flex items-center justify-between">
                                                             <span class="capitalize"
@@ -612,7 +616,8 @@
                                                           </div>
                                                         </template>
                                                         <!-- MENU ITEMS -->
-                                                        <ul class=" border-[#2c5d8f] bg-[#336ca6]">
+                                                        <ul :class="{'border-t' : !closeAndBack}"
+                                                          class=" border-[#2c5d8f] bg-[#336ca6]">
                                                           <template x-for="item3 in item2.menuLevel3"
                                                             :key="item3.title">
                                                             <li class="text-white border-b border-[#2b5a8b] flex group">
@@ -949,7 +954,7 @@
             </div>
             <!-- OPTION -->
             <div class="w-full px-4 pb-5 flex items-start relative">
-              <input type="checkbox" class="peer" hidden id="closeAndBack">
+              <input type="checkbox" class="peer" hidden x-model="closeAndBack" id="closeAndBack">
               <div class="hidden peer-checked:block absolute left-[2px] top-[5%] text-[#243949] z-20">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                   class="w-4 h-4 stroke-2">
@@ -958,7 +963,8 @@
                     clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <div class="absolute top-[0%] left-0 h-5 w-5 bg-[#dab977] z-10">
+              <div :class="closeAndBack ? 'bg-[#dab977]' : 'bg-[#fffce1]'"
+                class="absolute top-[0%] left-0 h-5 w-5 z-10 transition-all">
               </div>
               <label class="uppercase ml-4 select-none cursor-pointer flex items-center gap-x-1 text-sm"
                 for="closeAndBack">
