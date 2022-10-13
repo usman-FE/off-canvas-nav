@@ -29,6 +29,8 @@
       disableBody: true,
       closeAndBack: true,
       closeOnClick: true,
+      mainAdditem: 0,
+      coinCounter: 0,
       mainNav: true,
       bodyOverflow: function (modal) {
         document.querySelector('body').classList.remove('overflow-hidden', 'overflow-visible');
@@ -53,6 +55,42 @@
                 title: 'Ethereum',
                 url: '#',
                 menuLevel2: null
+              },
+              {
+                title: 'Litecoin',
+                url: '#',
+                menuLevel2: null,
+                index: 1,
+                icon: 'images/new.svg'
+              },
+              {
+                title: 'Dogecoin',
+                url: '#',
+                menuLevel2: null,
+                index: 2,
+                icon: 'images/new.svg'
+              },
+              {
+                title: 'Bitcoin Cash',
+                url: '#',
+                menuLevel2: null,
+                index: 3,
+                icon: 'images/new.svg'
+              },
+              {
+                title: 'ZCash',
+                url: '#',
+                menuLevel2: null,
+                index: 4,
+                icon: 'images/new.svg'
+              },
+              {
+                title: 'Add Coin',
+                url: '#',
+                menuLevel2: null,
+                coinCounterBtn: true,
+                hidden: false,
+                icon: 'images/plus.svg'
               },
             ]
           },
@@ -469,12 +507,20 @@
                             <!-- MENU ITEMS -->
                             <ul :class="{'border-t' : !closeAndBack}" class=" border-[#2c5d8f] bg-[#336ca6]">
                               <template x-for="item in category.menuLevel1" :key="item.title">
-                                <li class="text-white border-b border-[#2b5a8b] flex group">
+                                <li class="text-white border-b border-[#2b5a8b] flex group"
+                                  x-show="item.index ? item.index <= coinCounter : true">
                                   <a :href="item.url" @click="
                                   if(item.menuLevel2){ 
                                     subMenuLevel = 2;
                                     currentSubmenu2 = item.title;
                                   }else{
+                                    if(item.coinCounterBtn){
+                                      coinCounter++;
+                                      if(coinCounter >= 4) {
+                                        $el.style.display = 'none';
+                                      }
+                                      return;
+                                    }
                                     if(closeOnClick){
                                       toggleOn = false;
                                       subMenuLevel = 0;
@@ -514,7 +560,8 @@
                                       class="bg-[#336ca6] absolute inset-0 h-full w-full transition-all duration-[400ms] ease-in-out z-30 shadow-lg">
                                       <!-- SUBMENU OVERLAY -->
                                       <div class="absolute inset-0 w-full h-full bg-black/30 z-[15]"
-                                        x-transition.opacity x-show="subMenuLevel > 2" @click="subMenuLevel = 2"></div>
+                                        x-transition.opacity x-show="subMenuLevel > 2" @click="subMenuLevel = 2">
+                                      </div>
                                       <div class="w-full h-full relative">
                                         <div class="overflow-y-auto h-full">
                                           <!-- MENU HEADING -->
@@ -678,6 +725,12 @@
                                 </li>
                               </template>
                             </ul>
+                            <template x-if="category.title === 'Devices'">
+                              <div class="text-xs py-3.5 px-4 text-white border-b border-[#2c5d8f]">
+                                <p>You can add any custom content to your navigation items. This text is just an
+                                  example.</p>
+                              </div>
+                            </template>
                           </div>
                         </div>
                       </div>
@@ -689,7 +742,7 @@
               <div class="flex">
                 <h2 class="grow text-[16px] py-2.5 px-4 text-[#1b3958]">Examples</h2>
               </div>
-              <!-- CATEGORIES MENU -->
+              <!-- EXAMPLES MENU -->
               <ul class="border-b border-[#2c5d8f] bg-[#336ca6]">
                 <li class="text-white border-t border-[#2c5d8f]">
                   <a href="#"
@@ -702,6 +755,8 @@
                       </svg>
                     </span>
                     <span class="capitalize">Collections</span>
+                    <span
+                      class="bg-[#ff635a] py-0.5 leading-none ml-auto w-[15px] rounded-sm text-center text-xs">3</span>
                   </a>
                 </li>
                 <li class="text-white border-t border-[#2c5d8f]">
@@ -730,8 +785,60 @@
                     <span class="capitalize">Disabled Link</span>
                   </a>
                 </li>
-                <li class="text-white border-t border-[#2c5d8f]">
+                <li class="text-white border-t border-[#2c5d8f]" x-show="mainAdditem > 0">
                   <a href="#"
+                    class="grow text-sm py-3.5 px-4 text-white font-semibold hover:bg-black/5 transition-all flex items-center">
+                    <span class="mr-4 text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                      </svg>
+                    </span>
+                    <span class="capitalize">Charts</span>
+                  </a>
+                </li>
+                <li class="text-white border-t border-[#2c5d8f]" x-show="mainAdditem > 1">
+                  <a href="#"
+                    class="grow text-sm py-3.5 px-4 text-white font-semibold hover:bg-black/5 transition-all flex items-center">
+                    <span class="mr-4 text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                      </svg>
+                    </span>
+                    <span class="capitalize">Logs</span>
+                  </a>
+                </li>
+                <li class="text-white border-t border-[#2c5d8f]" x-show="mainAdditem > 2">
+                  <a href="#"
+                    class="grow text-sm py-3.5 px-4 text-white font-semibold hover:bg-black/5 transition-all flex items-center">
+                    <span class="mr-4 text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                      </svg>
+                    </span>
+                    <span class="capitalize">Tests</span>
+                  </a>
+                </li>
+                <li class="text-white border-t border-[#2c5d8f]" x-show="mainAdditem > 3">
+                  <a href="#"
+                    class="grow text-sm py-3.5 px-4 text-white font-semibold hover:bg-black/5 transition-all flex items-center">
+                    <span class="mr-4 text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                      </svg>
+                    </span>
+                    <span class="capitalize">Profile</span>
+                  </a>
+                </li>
+                <li class="text-white border-t border-[#2c5d8f]" x-show="mainAdditem < 4">
+                  <a href="#" @click.prevent="mainAdditem++"
                     class="grow text-sm py-3.5 px-4 text-white font-semibold hover:bg-black/5 transition-all flex items-center">
                     <span class="mr-4 text-white">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -744,7 +851,7 @@
                 </li>
               </ul>
               <!-- SOCIALS -->
-              <ul class="absolute left-0 bottom-0 right-0 w-full flex z-10 border-t border-black/20">
+              <ul class="absolute left-0 bottom-0 right-0 w-full flex z-10 bg-[#336ca6] border-t border-black/20">
                 <li class="flex-auto grow text-white block relative">
                   <a href="#"
                     class="py-3.5 px-4 text-white border-b hover:bg-[#31679e] border-[#2c5d8f] transition-all flex justify-center">
@@ -888,7 +995,7 @@
           <div class="md:-mx-5 grid grid-cols-1 md:grid-cols-3 w-full">
             <div class="w-full px-4 pb-5">
               <a href="#"
-                class="block relative py-4 px-8 uppercase text-center text-[#243949] bg-[#fffce1] rounded-[30px/80px] transition-all font-bold text-base hover:text-[#d5af63]">Overlap
+                class="block relative py-4 px-8 uppercase text-center text-[#243949] bg-[#dab977] rounded-[30px/80px] transition-all font-bold text-base">Overlap
                 levels</a>
             </div>
           </div>
